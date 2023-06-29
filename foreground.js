@@ -42,11 +42,13 @@ function addButtonListeners(currentAttribute){
     let allTextNodes = textNodesUnder(document.body)
     allTextNodes.forEach(el=>{
         el.parentElement.setAttribute("contenteditable",currentAttribute)
+        if(currentAttribute){
+            el.parentElement.classList.add("disabled")
+        }
     })
 }
 function linkEditor(currentAttribute){
     let allLinks = document.querySelectorAll("a")
-    console.log(allLinks)
     if(currentAttribute){
         allLinks.forEach(el=>{
             el.classList.add("disabled")
@@ -57,6 +59,22 @@ function linkEditor(currentAttribute){
             el.classList.remove("disabled")
         })    
     }
+
+    let allClicks = document.querySelectorAll("*")
+    if(currentAttribute){
+        allClicks.forEach(el=>{
+            el.addEventListener("click",remover)
+        })
+    }
+    else{
+        allClicks.forEach(el=>{
+            el.removeEventListener("click",remover)
+        })    
+    }
+}
+function remover(e){
+    e.preventDefault();
+    return false
 }
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {

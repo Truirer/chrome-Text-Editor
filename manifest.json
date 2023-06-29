@@ -6,7 +6,7 @@
     "icons": {
         "16": "logo/logo16disabled.png",
         "32": "logo/logo32disabled.png",
-        "192":"logo/logo192disabled.png"
+        "192":"logo/logo192.png"
     },
     "options_page": "settings/settings.html",
     "action": {
